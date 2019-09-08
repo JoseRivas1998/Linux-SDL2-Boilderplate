@@ -64,7 +64,7 @@ void Game::update() {
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    playerTex->draw(renderer);
+    playerTex->draw(renderer, cnt, 0);
     SDL_RenderPresent(renderer);
 }
 
