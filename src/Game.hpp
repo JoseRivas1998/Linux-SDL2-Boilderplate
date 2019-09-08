@@ -6,6 +6,7 @@
 #define SDL2TEST_GAME_HPP
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <iostream>
 
 class Game {

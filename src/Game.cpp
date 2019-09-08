@@ -4,6 +4,10 @@
 
 #include "Game.hpp"
 
+SDL_Texture *playerTex;
+SDL_Rect srcR;
+SDL_Rect destR;
+
 Game::Game() {}
 
 Game::~Game() {}
@@ -32,6 +36,11 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     } else {
         isRunning = false;
     }
+
+    SDL_Surface *tmpSurface = IMG_Load("../assets/idle-left.png");
+    playerTex = SDL_CreateTextureFromSurface(this->renderer, tmpSurface);
+    SDL_FreeSurface(tmpSurface);
+
 }
 
 void Game::handleEvents() {
@@ -46,18 +55,24 @@ void Game::handleEvents() {
 
 void Game::update() {
     cnt++;
+
+    destR.h = 48 * 2;
+    destR.w = 32 * 2;
+    destR.x = cnt;
+
     std::cout << cnt << std::endl;
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
-
+    SDL_RenderCopy(renderer, playerTex, NULL, &destR);
     SDL_RenderPresent(renderer);
 }
 
 void Game::clean() {
     SDL_DestroyWindow(this->window);
     SDL_DestroyRenderer(this->renderer);
+    SDL_DestroyTexture(playerTex);
     SDL_Quit();
     std::cout << "Game Cleaned!" << std::endl;
 }
