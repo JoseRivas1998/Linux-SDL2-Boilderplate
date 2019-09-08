@@ -6,7 +6,7 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 
-set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.hpp)
+set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.hpp src/graphics/Texture.cpp src/graphics/Texture.hpp)
 
 add_executable(SDL2Test ${SOURCE_FILES})
 target_link_libraries(SDL2Test ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})

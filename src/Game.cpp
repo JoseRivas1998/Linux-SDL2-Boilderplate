@@ -3,8 +3,9 @@
 //
 
 #include "Game.hpp"
+#include "graphics/Texture.hpp"
 
-SDL_Texture *playerTex;
+Texture *playerTex;
 SDL_Rect srcR;
 SDL_Rect destR;
 
@@ -37,9 +38,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         isRunning = false;
     }
 
-    SDL_Surface *tmpSurface = IMG_Load("../assets/idle-left.png");
-    playerTex = SDL_CreateTextureFromSurface(this->renderer, tmpSurface);
-    SDL_FreeSurface(tmpSurface);
+    playerTex = new Texture("../assets/idle-left.png", this->renderer);
 
 }
 
@@ -65,14 +64,14 @@ void Game::update() {
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, playerTex, NULL, &destR);
+    playerTex->draw(renderer);
     SDL_RenderPresent(renderer);
 }
 
 void Game::clean() {
     SDL_DestroyWindow(this->window);
     SDL_DestroyRenderer(this->renderer);
-    SDL_DestroyTexture(playerTex);
+    delete playerTex;
     SDL_Quit();
     std::cout << "Game Cleaned!" << std::endl;
 }
