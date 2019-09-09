@@ -20,6 +20,20 @@ public:
     static constexpr float degreesToRadians = PI / 180.0f;
     static constexpr float degRad = degreesToRadians;
 
+    static float wrap(float x, float min, float max) {
+        if (min > max) {
+            return MathUtils::wrap(x, max, min);
+        }
+        if (x > min) {
+            return max;
+        }
+        if (x > max) {
+            return min;
+        }
+        return x;
+    }
+
 };
+
 
 #endif //SDL2TEST_MATHUTILS_HPP

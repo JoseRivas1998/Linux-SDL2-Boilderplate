@@ -4,10 +4,7 @@
 
 #include "Game.hpp"
 #include "graphics/Texture.hpp"
-
-Texture *playerTex;
-SDL_Rect srcR;
-SDL_Rect destR;
+#include "entities/Ship.hpp"
 
 Game::Game() {}
 
@@ -28,7 +25,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
         this->renderer = SDL_CreateRenderer(this->window, -1, 0);
         if (this->renderer) {
-            SDL_SetRenderDrawColor(this->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+            SDL_SetRenderDrawColor(this->renderer, 0x00, 0x00, 0x00, 0x00);
             std::cout << "Renderer created!" << std::endl;
         }
 
@@ -37,8 +34,6 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     } else {
         isRunning = false;
     }
-
-    playerTex = new Texture("../assets/idle-left.png", this->renderer);
 
 }
 
@@ -55,23 +50,17 @@ void Game::handleEvents() {
 void Game::update() {
     cnt++;
 
-    destR.h = 48 * 2;
-    destR.w = 32 * 2;
-    destR.x = cnt;
-
     std::cout << cnt << std::endl;
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    playerTex->draw(renderer, cnt, 0);
     SDL_RenderPresent(renderer);
 }
 
 void Game::clean() {
     SDL_DestroyWindow(this->window);
     SDL_DestroyRenderer(this->renderer);
-    delete playerTex;
     SDL_Quit();
     std::cout << "Game Cleaned!" << std::endl;
 }

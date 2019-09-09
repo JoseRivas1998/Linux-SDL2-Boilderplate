@@ -12,10 +12,8 @@ set(SOURCE_FILES
         src/Game.hpp
         src/graphics/Texture.cpp
         src/graphics/Texture.hpp
-        src/GameObject.cpp
-        src/GameObject.hpp
         src/math/Vector2.cpp
-        src/math/Vector2.hpp src/math/MathUtils.hpp)
+        src/math/Vector2.hpp src/math/MathUtils.hpp src/math/Rectangle.cpp src/math/Rectangle.hpp src/entities/Entity.cpp src/entities/Entity.hpp src/entities/Ship.cpp src/entities/Ship.hpp)
 
 add_executable(SDL2Test ${SOURCE_FILES})
 target_link_libraries(SDL2Test ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})

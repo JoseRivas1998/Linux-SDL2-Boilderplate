@@ -61,4 +61,26 @@ float Vector2::angle() {
     return angle;
 }
 
+float Vector2::getX() const {
+    return x;
+}
+
+void Vector2::setX(float x) {
+    Vector2::x = x;
+}
+
+float Vector2::getY() const {
+    return y;
+}
+
+void Vector2::setY(float y) {
+    Vector2::y = y;
+}
+
+Vector2 Vector2::polar(float speed, float angle) {
+    float x = speed * cosf(angle);
+    float y = speed * sinf(angle);
+    return Vector2(x, y);
+}
+
 Vector2::~Vector2() = default;

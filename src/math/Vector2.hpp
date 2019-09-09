@@ -7,6 +7,7 @@
 
 
 class Vector2 {
+public:
 
     Vector2() : Vector2(0, 0) {}
 
@@ -28,19 +29,29 @@ class Vector2 {
 
     void set(float _x, float _y);
 
-    void set(const Vector2& vector2) { this->set(vector2.x, vector2.y); }
+    void set(const Vector2 &vector2) { this->set(vector2.x, vector2.y); }
 
-    Vector2 operator - (const Vector2 &v);
+    Vector2 operator-(const Vector2 &v);
 
     void sub(float _x, float _y);
 
-    Vector2 operator + (const Vector2 &v);
+    Vector2 operator+(const Vector2 &v);
 
     void add(float _x, float _y);
 
     float angle();
 
     float angle(Vector2 v);
+
+    float getX() const;
+
+    void setX(float x);
+
+    float getY() const;
+
+    void setY(float y);
+
+    static Vector2 polar(float speed, float angleRadians);
 
 private:
     float x;
